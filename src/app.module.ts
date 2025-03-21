@@ -1,25 +1,31 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ExtensionsModule } from './extensions/extensions.module';
 import { DomainModule } from './domain/domain.module';
 
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'mysql-2ebc6c7-riyaz-e7a1.l.aivencloud.com',
-      port: 24279,
-      username: 'avnadmin',
-      password: 'AVNS_QdRR7PPdUz0HNElCNvD',
-      database: 'pbx',
-      extra: {
-        authPlugin: 'mysql_native_password',
-      },
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Disable in production
+    ConfigModule.forRoot({   envFilePath: '.env', // Specify the file path
+      isGlobal: true }), // ✅ Load .env globally
+
+    TypeOrmModule.forRootAsync({
+      useFactory() {
+        return {
+        type: 'mysql',
+        host:process.env.DB_HOST,
+        port: 24279,
+        username:process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
+        synchronize: true,
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        }}
     }),
     ExtensionsModule,
     DomainModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
