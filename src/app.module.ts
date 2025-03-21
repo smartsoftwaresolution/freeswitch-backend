@@ -7,11 +7,14 @@ import { DomainModule } from './domain/domain.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'Smart@123',
+      host: 'mysql-2ebc6c7-riyaz-e7a1.l.aivencloud.com',
+      port: 24279,
+      username: 'avnadmin',
+      password: 'AVNS_QdRR7PPdUz0HNElCNvD',
       database: 'pbx',
+      extra: {
+        authPlugin: 'mysql_native_password',
+      },
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // Disable in production
     }),
