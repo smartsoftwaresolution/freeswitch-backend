@@ -8,7 +8,7 @@ console.log('DB_HOST:', process.env.DB_HOST);
 console.log('DB_USER:', process.env.DB_USER);
 @Module({
   imports: [
-    ConfigModule.forRoot({   envFilePath: '.env', // Specify the file path
+    ConfigModule.forRoot({  
       isGlobal: true }), // ✅ Load .env globally
 
     TypeOrmModule.forRootAsync({

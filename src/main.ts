@@ -1,11 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as dotenv from 'dotenv';
 
 async function bootstrap() {
-  dotenv.config();
-  console.log('DB_NAME:', process.env.DB_NAME); // Should print correct value
 
   const app = await NestFactory.create(AppModule);
   app.enableCors();
