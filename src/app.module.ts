@@ -15,11 +15,11 @@ console.log('DB_USER:', process.env.DB_USER);
       useFactory() {
         return {
         type: 'mysql',
-        host:process.env.DB_HOST,
+        host:"mysql-2ebc6c7-riyaz-e7a1.l.aivencloud.com",
         port: 24279,
-        username:process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_NAME,
+        username:"avnadmin",
+        password: "AVNS_QdRR7PPdUz0HNElCNvD",
+        database: "pbx",
         synchronize: true,
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         }}
